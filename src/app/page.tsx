@@ -1,9 +1,13 @@
-import { Heading } from '@chakra-ui/react'
+import { Heading, VStack } from '@chakra-ui/react'
 
 export default function Home() {
   return (
     <main>
-      <Heading as="h1">Hello, World!</Heading>
+      <VStack justifyContent={'center'} h={'100vh'}>
+        <Heading as="h1" size="4xl" color={'primary.500'}>
+          The Big Code Theory
+        </Heading>
+      </VStack>
     </main>
   )
 }

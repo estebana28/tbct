@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 import type { Metadata } from 'next'
 import { Providers } from './providers'
 import { Inter } from 'next/font/google'
@@ -17,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="/public/output.css" rel="stylesheet" />
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

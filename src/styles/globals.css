@@ -1,4 +1,8 @@
-main {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* main {
   min-height: 100dvh;
   background: rgb(100, 204, 197);
   background: radial-gradient(
@@ -6,4 +10,4 @@ main {
     rgba(100, 204, 197, 1) 0%,
     rgba(23, 107, 135, 1) 75%
   );
-}
+} */

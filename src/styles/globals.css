@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+  min-height: 100dvh;
+  width: 100%;
+}
 /* main {
   min-height: 100dvh;
   background: rgb(100, 204, 197);

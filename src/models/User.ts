@@ -1,22 +1,33 @@
 import mongoose from 'mongoose'
 
-const authSchema = new mongoose.Schema(
-  {
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-    },
-    code: {
-      type: String,
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    unique: true,
+    required: true,
   },
-  { timestamps: true },
-)
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  language: {
+    type: String,
+  },
+  profile: {
+    type: Object,
+    default: {},
+  },
+})
 
-export default mongoose.models.Auth || mongoose.model('Auth', authSchema)
+export default mongoose.models.User || mongoose.model('User', userSchema)

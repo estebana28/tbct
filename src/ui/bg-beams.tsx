@@ -3,16 +3,13 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/utils/cn'
 
-export function BackgroundBeamsDemo() {
+export function BackgroundBeamsDemo({ title }: { title: string }) {
   return (
-    <div className="h-screen w-full bg-primary-500 relative flex flex-col items-center justify-center antialiased">
+    <div className="h-screen w-full bg-slate-900 relative flex flex-col items-center justify-center antialiased">
       <div className="max-w-4xl mx-auto p-4">
-        <h1 className="relative z-10 text-xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-secondary-500 to-lightPrimary-500  text-center font-mono font-bold p-1">
-          The Big Code Theory
+        <h1 className="relative z-10 text-xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-fuchsia-800 to-teal-700  text-center font-mono font-bold p-1 blur-[2px] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-1000 cursor-default hover:blur-none">
+          {title}
         </h1>
-        <p className="text-center text-indigo-900 font-mono text-sm md:text-2xl">
-          Coming soon...
-        </p>
       </div>
       <BackgroundBeams />
     </div>

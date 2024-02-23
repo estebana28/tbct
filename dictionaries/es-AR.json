@@ -1,0 +1,14 @@
+{
+  "home": {
+    "title": "The Big Code Theory"
+  },
+  "auth": {
+    "code": {
+      "title": "Iniciar sesión",
+      "email_label": "Correo electrônico",
+      "email_placeholder": "Ingrese su correo electrónico",
+      "button_label": "Enviar código"
+    },
+    "login": {}
+  }
+}

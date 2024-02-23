@@ -14,36 +14,7 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    // colors: {
-    //   primary: {
-    //     500: '#001C30',
-    //   },
-    //   lightPrimary: {
-    //     500: '#176B87',
-    //   },
-    //   secondary: {
-    //     500: '#64CCC5',
-    //   },
-    //   lightSecondary: {
-    //     500: '#DAFFFB',
-    //   },
-    // },
-    extend: {
-      colors: {
-        primary: {
-          500: '#001C30',
-        },
-        lightPrimary: {
-          500: '#176B87',
-        },
-        secondary: {
-          500: '#64CCC5',
-        },
-        lightSecondary: {
-          500: '#DAFFFB',
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [require('@tailwindcss/aspect-ratio'), addVariablesForColors],
 }

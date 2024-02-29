@@ -1,24 +1,36 @@
 import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import path from 'path'
+import { NextRequest } from 'next/server'
+import { cookies } from 'next/headers'
 
+interface Locale {
+  name: string
+  value: string
+}
 let locales = ['es-AR']
+async function getLocale(request: NextRequest) {
+  let defaultLocale
+  const cookieStore = cookies()
+  const acceptLanguage = request.headers.get('accept-language')?.split(',')[0]
+  const validLocale = locales.find((locale) => locale === acceptLanguage)
 
-// Get the preferred locale, similar to the above or using a library
-function getLocale() {
-  const preferredLocale = 'es-AR' // Llamada a una función para obtener el idioma preferido
-  return preferredLocale
+  if (validLocale) {
+    defaultLocale = { value: acceptLanguage }
+  } else {
+    defaultLocale = { value: 'es-AR' }
+  }
+  const selectedLocale =
+    (await cookieStore.get('preferredLocale')) || defaultLocale
+  return selectedLocale
 }
 
 export async function middleware(request: NextRequest) {
-  // Check if there is any supported locale in the pathname
+  const locale = await getLocale(request)
   const { pathname } = request.nextUrl
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-  const locale = getLocale()
+  const logedIn = await request.cookies.get('auth_token')
 
-  const logedIn = request.cookies.get('auth_token')
   if (logedIn && pathnameHasLocale) {
     return
   }
@@ -28,11 +40,10 @@ export async function middleware(request: NextRequest) {
   } else {
     if (pathnameHasLocale) return
   }
+
   // Redirect if there is no locale
-
   if (!pathnameHasLocale && !logedIn) {
-    request.nextUrl.pathname = `/${locale}/auth/code`
-
+    request.nextUrl.pathname = `/${locale.value}/`
     return NextResponse.redirect(request.nextUrl)
   } else {
     request.nextUrl.pathname = `/${locale}`

@@ -1,13 +1,18 @@
 {
   "home": {
-    "title": "The Big Code Theory"
+    "title": "The Big Code Theory",
+    "description": "Este es un proyecto de código abierto que tiene como objetivo proporcionar una evaluación exhaustiva, enfocándose en las teorías, fundamentos y elementos fundamentales de diversos lenguajes de programación, librerías, frameworks y más...",
+    "button_label": "Comenzar"
   },
   "auth": {
     "code": {
       "title": "Iniciar sesión",
-      "email_label": "Correo electrônico",
+      "email_label": "Email",
       "email_placeholder": "Ingrese su correo electrónico",
-      "button_label": "Enviar código"
+      "code_label": "Código",
+      "code_placeholder": "Ingrese el código",
+      "button_label_code": "Enviar código",
+      "button_label_login": "Iniciar sesión"
     },
     "login": {}
   }

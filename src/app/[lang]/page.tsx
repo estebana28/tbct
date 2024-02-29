@@ -1,6 +1,5 @@
-import { Heading, VStack } from '@chakra-ui/react'
-import { BackgroundBeamsDemo } from '@/ui/bg-beams'
 import { getDictionary } from '../../dictionaries'
+import LandingHero from '@/components/hero/landing'
 
 interface PageProps {
   params: {
@@ -13,9 +12,7 @@ export default async function Home({ params: { lang } }: PageProps) {
 
   return (
     <main>
-      <VStack justifyContent={'center'} h={'100dvh'}>
-        <BackgroundBeamsDemo title={dict.home.title} />
-      </VStack>
+      <LandingHero dict={dict} lang={lang} />
     </main>
   )
 }

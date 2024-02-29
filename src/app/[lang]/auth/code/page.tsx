@@ -13,8 +13,10 @@ export default async function CodePage({ params: { lang } }: PageProps) {
     <div className="flex justify-center items-start pt-32 md:items-center md:pt-0 h-full bg-slate-900">
       <AuthCard
         title={dict.auth.code.title}
-        buttonText={dict.auth.code.button_label}
-        placeholderText={dict.auth.code.email_placeholder}
+        buttonTextCode={dict.auth.code.button_label_code}
+        placeholderTextEmail={dict.auth.code.email_placeholder}
+        labelTextEmail={dict.auth.code.email_label}
+        lang={lang}
       />
     </div>
   )

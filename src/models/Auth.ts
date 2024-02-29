@@ -1,6 +1,3 @@
-import mongoose, { FilterQuery, Model } from 'mongoose'
-import { isAfter } from 'date-fns/isAfter'
-import { v4 as uuidv4 } from 'uuid'
 import {
   generateSixDigitCode,
   cleanEmail,

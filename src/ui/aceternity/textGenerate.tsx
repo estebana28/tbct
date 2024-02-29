@@ -23,7 +23,7 @@ export const TextGenerate = ({
         delay: stagger(0.2),
       },
     )
-  }, [scope.current])
+  }, [animate])
 
   const renderWords = () => {
     return (

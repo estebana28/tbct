@@ -19,13 +19,16 @@ export function LanguageMenu() {
   })
   const cookies = useCookies()
 
-  const langs = [
-    {
-      dictionary: 'es-AR',
-      countryCode: 'ar',
-      title: 'Argentina',
-    },
-  ]
+  const langs = useMemo(
+    () => [
+      {
+        dictionary: 'es-AR',
+        countryCode: 'ar',
+        title: 'Argentina',
+      },
+    ],
+    [],
+  )
 
   //Gets the language from cookies at the first render or set its value to default
   useEffect(() => {
@@ -37,7 +40,7 @@ export function LanguageMenu() {
       setDictionary(langs[0])
       cookies.set('preferredLocale', langs[0].dictionary)
     }
-  }, [])
+  }, [cookies, langs])
 
   // Memoize CircleFlag creation based on dictionary prop
   const selectedLanguage = useMemo(() => {
@@ -50,7 +53,7 @@ export function LanguageMenu() {
         />
       )
     }
-  }, [dictionary])
+  }, [dictionary, langs])
 
   return (
     <Menu>

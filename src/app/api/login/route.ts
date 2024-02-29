@@ -1,6 +1,6 @@
 import connect from '@/utils/db'
 import { NextResponse } from 'next/server'
-import { Auth } from '@/models/auth'
+import { Auth } from '@/models/Auth'
 
 export const POST = async (request: Request) => {
   const { email, code } = await request.json()

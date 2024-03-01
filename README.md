@@ -1,18 +1,12 @@
-# The Big Code Theory
+# The Big Code Theory (WIP)
 
-## Description // Descripción
+## Description / Mission
 
-### (ENG) This is a work in progress project (WIP)
+### This is a work in progress project
 
 This is an open-source project that seeks to offer a thorough evaluation, emphasizing the theories, foundations, and core elements of various programming languages, libraries, frameworks, and more.
 
 I will continue to enhance this project as it progresses. I have numerous ideas that could potentially make it a pivotal resource for programmers worldwide.
-
-### (ESP) Este es un proyecto en desarrollo
-
-Este es un proyecto de código abierto que tiene como objetivo proporcionar una evaluación exhaustiva, enfocándose en las teorías, fundamentos y elementos fundamentales de diversos lenguajes de programación, librerías, frameworks y más.
-
-Continuaré mejorando este proyecto a medida que se complete. Tengo numerosas ideas que podrían convertirlo en un recurso clave para programadores en todo el mundo.
 
 ## Tech stack
 
@@ -32,14 +26,19 @@ Continuaré mejorando este proyecto a medida que se complete. Tengo numerosas id
 ✅ React Hook Form
 ✅ YUP
 ✅ Date-fns
-✅ Acecernity UI
+✅ Aceternity UI
 ✅ And more...
 
 ## Commands
 
-`yarn install` Install all dependencies
-`yarn build` Build code
-`yarn dev` Development mode
-`yarn start` Production mode
+| Commands       | Action                                                |
+| :------------- | :---------------------------------------------------- |
+| `yarn install` | Install all dependencies                              |
+| `yarn build`   | Build code                                            |
+| `yarn dev`     | Start project in development mode on `localhost:3000` |
+| `yarn start`   | Start project in production mode on `localhost:3000`  |
 
-## Spotlight
+## Organzation
+
+> [!NOTE]
+> I will be leading this project in its entirety and I welcome all forms of feedback, error reports, ideas, and improvement suggestions, among others. These will be organized in the repository as 'Issues', for which a template has been provided to facilitate their proper use and organization.

@@ -21,11 +21,13 @@ import {
 
 interface CardProps {
   placeholderText?: string
-  buttonTextCode?: string
+  buttonTextLogin?: string
   title: string
   labelTextEmail?: string
+  labelTextCode?: string
   lang: string
   placeholderTextEmail: string
+  placeholderTextCode?: string
 }
 
 const schema = yup.object().shape({
@@ -36,17 +38,17 @@ type AuthFormInputs = {
   email: string
 }
 
-export default function AuthCard({
-  buttonTextCode,
+export default function LoginCard({
+  buttonTextLogin,
   placeholderTextEmail,
   title,
   labelTextEmail,
+  labelTextCode,
   lang,
 }: CardProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const router = useRouter()
   const { data: session, status } = useSession()
-  console.log(session, status)
 
   const {
     handleSubmit,
@@ -61,11 +63,17 @@ export default function AuthCard({
   })
 
   const onSubmit = async (values: any) => {
-    console.log('Submitieando')
+    console.log('Submitieando', values)
 
     setIsLoading(!isLoading)
-    await auth(values.email)
-    router.push(`/${lang}/auth/login?email=${encodeURIComponent(values.email)}`)
+    const res = await signIn('credentials', {
+      redirect: false,
+      email: values.email,
+      code: values.code,
+      //callbackUrl: `/${lang}/home`,
+    })
+    console.log(res)
+
     setIsLoading(!isLoading)
   }
 
@@ -88,12 +96,21 @@ export default function AuthCard({
               focusBorderColor="teal.500"
               className="text-slate-300"
             />
+
+            <Text className="text-slate-300">{labelTextCode}</Text>
+            <PinInputCUI
+              name="code"
+              control={control}
+              digits={6}
+              focusBorderColor="teal.500"
+            />
+
             <div className="justify-self-center">
               <RippleButton
                 type="submit"
                 className="text-lg font-bold text-teal-500"
               >
-                {buttonTextCode}
+                {buttonTextLogin}
               </RippleButton>
             </div>
           </CardBody>

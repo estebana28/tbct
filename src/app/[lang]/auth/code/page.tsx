@@ -10,7 +10,7 @@ interface PageProps {
 export default async function CodePage({ params: { lang } }: PageProps) {
   const dict = await getDictionary(lang)
   return (
-    <div className="flex justify-center items-start pt-32 md:items-center md:pt-0 h-full bg-slate-900">
+    <div className="flex items-start justify-center h-full pt-32 md:items-center md:pt-0 bg-slate-900">
       <AuthCard
         title={dict.auth.code.title}
         buttonTextCode={dict.auth.code.button_label_code}

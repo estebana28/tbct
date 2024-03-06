@@ -12,22 +12,22 @@ I will continue to enhance this project as it progresses. I have numerous ideas 
 
 ### Main Stack
 
-✅ React
-✅ Next.js
-✅ Typescript
-✅ Chakra UI
-✅ Tailwind CSS
-✅ Mongo DB
-✅ SWR
+- React
+- Next.js
+- Typescript
+- Chakra UI
+- Tailwind CSS
+- Mongo DB
+- SWR
 
 ### Auxiliary Libraries
 
-✅ Mongoose
-✅ React Hook Form
-✅ YUP
-✅ Date-fns
-✅ Aceternity UI
-✅ And more...
+- Mongoose
+- React Hook Form
+- YUP
+- Date-fns
+- Aceternity UI
+- And more...
 
 ## Commands
 
@@ -38,7 +38,7 @@ I will continue to enhance this project as it progresses. I have numerous ideas 
 | `yarn dev`     | Start project in development mode on `localhost:3000` |
 | `yarn start`   | Start project in production mode on `localhost:3000`  |
 
-## Organzation
+## Organization
 
 > [!NOTE]
 > I will be leading this project in its entirety and I welcome all forms of feedback, error reports, ideas, and improvement suggestions, among others. These will be organized in the repository as 'Issues', for which a template has been provided to facilitate their proper use and organization.

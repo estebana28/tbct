@@ -5,9 +5,11 @@ import { Button, Stack, useColorModeValue } from '@chakra-ui/react'
 export const RippleButton = ({
   className,
   children,
+  type = 'button',
 }: {
   className?: string
   children: React.ReactNode
+  type?: 'submit' | 'reset' | 'button'
 }) => {
   const scheme = 'teal'
   const step1 = useColorModeValue('900', '800')
@@ -21,6 +23,7 @@ export const RippleButton = ({
       rounded="md"
       shadow="base"
       variant={'outline'}
+      type={type}
       _focus={{
         outline: 'none',
       }}

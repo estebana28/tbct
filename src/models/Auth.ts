@@ -1,39 +1,32 @@
-import {
-  generateSixDigitCode,
-  cleanEmail,
-  isCodeExpired,
-} from '@/utils/auxiliary'
-import { AuthModel } from '@/schemas/Auth'
+import mongoose, { Schema } from 'mongoose'
 
-export class Auth {
-  constructor() {
-    AuthModel
-  }
+const authSchema = new Schema(
+  {
+    email: {
+      type: Schema.Types.String,
+      unique: true,
+      required: [true, 'Email is required'],
+      match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Email is not valid'],
+    },
+    code: {
+      type: Schema.Types.String,
+      required: [true, 'Code is required'],
+      minLength: [6, 'Code must be at least 6 characters'],
+      maxLength: [6, 'Code must be at most 6 characters'],
+    },
+    createdAt: {
+      type: Schema.Types.Date,
+    },
+    updatedAt: {
+      type: Schema.Types.Date,
+      default: Date.now,
+    },
+    active: {
+      type: Schema.Types.Boolean,
+      default: true,
+    },
+  },
+  { collection: 'auth' },
+)
 
-  static async getOrCreateAuthCode(email: string) {
-    const code = generateSixDigitCode()
-    const auth = await AuthModel.findOne({ email })
-    if (!auth) return AuthModel.create({ email, code, createdAt: new Date() })
-    if (isCodeExpired(auth.createdAt)) {
-      return AuthModel.findOneAndUpdate(
-        { email },
-        {
-          code,
-          updatedAt: new Date(),
-        },
-      )
-    }
-    return auth
-  }
-
-  static async findByEmailAndCode(email: string, code: string) {
-    const emailCleaned = cleanEmail(email)
-    return await AuthModel.findOne({
-      $and: [{ email: emailCleaned }, { code: code }],
-    })
-  }
-
-  static async deleteByEmail(email: string) {
-    return AuthModel.findOneAndDelete({ email })
-  }
-}
+export default mongoose.models.Auth || mongoose.model('Auth', authSchema)

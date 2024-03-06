@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { Providers } from '../providers'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
-import { CookiesProvider } from 'next-client-cookies/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,15 +19,15 @@ export default function RootLayout({
   params: { lang: string }
 }>) {
   return (
-    <html lang={params.lang}>
-      <head>
-        <link href="/public/output.css" rel="stylesheet" />
-      </head>
-      <body className={`${inter.className} bg-slate-900 h-screen`}>
-        <Providers>
-          <CookiesProvider>{children}</CookiesProvider>
-        </Providers>
-      </body>
-    </html>
+    <Providers>
+      <html lang={params.lang}>
+        <head>
+          <link href="/public/output.css" rel="stylesheet" />
+        </head>
+        <body className={`${inter.className} bg-slate-900 h-screen`}>
+          {children}
+        </body>
+      </html>
+    </Providers>
   )
 }

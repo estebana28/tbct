@@ -28,6 +28,16 @@ export const auth = (email: string) => {
   })
 }
 
+export const sendEmailCode = (email: string, lang: string, code: string) => {
+  return postApi('/send-email', {
+    body: {
+      email,
+      lang,
+      code,
+    },
+  })
+}
+
 export const login = (email: string, code: string) => {
   return postApi('/login', {
     body: {

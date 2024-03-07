@@ -29,13 +29,13 @@ export async function middleware(request: NextRequest) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-  const logedIn = await request.cookies.get('auth_token')
+  const logedIn = await request.cookies.get('next-auth.session-token')
 
   if (logedIn && pathnameHasLocale) {
     return
   }
   if (logedIn) {
-    request.nextUrl.pathname = `/${locale}/`
+    request.nextUrl.pathname = `/${locale.value}/home`
     return NextResponse.redirect(new URL(request.nextUrl))
   } else {
     if (pathnameHasLocale) return
@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname = `/${locale.value}/`
     return NextResponse.redirect(request.nextUrl)
   } else {
-    request.nextUrl.pathname = `/${locale}`
+    request.nextUrl.pathname = `/${locale.value}`
     return NextResponse.redirect(request.nextUrl)
   }
 }
@@ -55,6 +55,7 @@ export const config = {
   matcher: [
     // Skip all internal paths (_next)
     //'/((?!_next).*)',
+    //add api routes here
     '/((?!api|_next/static|_next/image|favicon.ico).*)',
     // Optional: only run on root (/) URL
   ],

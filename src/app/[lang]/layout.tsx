@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-css-tags */
 import type { Metadata } from 'next'
-import { Providers } from '../providers'
+import { CookiesProvider } from 'next-client-cookies/server'
+import NextAuthSessionProvider from '@/components/config/SessionProvider'
+import { ChakraProvider } from '@/components/config/ChakraProvider'
+
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
-import { CookiesProvider } from 'next-client-cookies/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,9 +27,11 @@ export default function RootLayout({
         <link href="/public/output.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} bg-slate-900 h-screen`}>
-        <Providers>
-          <CookiesProvider>{children}</CookiesProvider>
-        </Providers>
+        <ChakraProvider>
+          <NextAuthSessionProvider>
+            <CookiesProvider>{children}</CookiesProvider>
+          </NextAuthSessionProvider>
+        </ChakraProvider>
       </body>
     </html>
   )

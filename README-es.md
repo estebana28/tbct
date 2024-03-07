@@ -12,22 +12,22 @@ Continuaré mejorando este proyecto a medida que se complete. Tengo numerosas id
 
 ### Principales tecnologías
 
-✅ React
-✅ Next.js
-✅ Typescript
-✅ Chakra UI
-✅ Tailwind CSS
-✅ Mongo DB
-✅ SWR
+- React
+- Next.js
+- Typescript
+- Chakra UI
+- Tailwind CSS
+- Mongo DB
+- SWR
 
 ### Librerías adicionales
 
-✅ Mongoose
-✅ React Hook Form
-✅ YUP
-✅ Date-fns
-✅ Aceternity UI
-✅ And more...
+- Mongoose
+- React Hook Form
+- YUP
+- Date-fns
+- Aceternity UI
+- And more...
 
 ## Commandos
 

@@ -5,29 +5,22 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { auth } from '@/utils/api-hooks/(auth)/auth'
+import { auth, sendEmailCode } from '@/utils/api-hooks/(auth)/auth'
 import InputCUI from '@/ui/inputs/input'
-import PinInputCUI from '@/ui/inputs/pinInput'
-import { RippleButton } from '@/ui/buttons/rippleButton'
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
-  Text,
   Divider,
+  Button,
+  FormControl,
+  FormHelperText,
 } from '@chakra-ui/react'
 
 interface CardProps {
-  placeholderText?: string
-  buttonTextCode?: string
-  buttonTextLogin?: string
-  title: string
-  labelTextEmail?: string
-  labelTextCode?: string
+  dict: any
   lang: string
-  placeholderTextEmail: string
-  placeholderTextCode?: string
 }
 
 const schema = yup.object().shape({
@@ -38,18 +31,11 @@ type AuthFormInputs = {
   email: string
 }
 
-export default function AuthCard({
-  buttonTextCode,
-  buttonTextLogin,
-  placeholderTextEmail,
-  placeholderTextCode,
-  title,
-  labelTextEmail,
-  labelTextCode,
-  lang,
-}: CardProps) {
+export default function AuthCard({ dict, lang }: CardProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
   const router = useRouter()
+
   const {
     handleSubmit,
     control,
@@ -63,47 +49,65 @@ export default function AuthCard({
   })
 
   const onSubmit = async (values: any) => {
+    setError('')
     setIsLoading(!isLoading)
-    await auth(values.email)
-    router.push(`/${lang}/auth/login?email=${encodeURIComponent(values.email)}`)
-    setIsLoading(!isLoading)
+    try {
+      const authData = await auth(values.email)
+      await sendEmailCode(values.email, lang, authData.code)
+      router.push(
+        `/${lang}/auth/login?email=${encodeURIComponent(values.email)}`,
+      )
+
+      setIsLoading(false)
+    } catch (error) {
+      setError(dict.auth.code.code_send_error)
+      setIsLoading(false)
+    }
+    setIsLoading(false)
   }
 
   return (
     <div className="shadow-2xl shadow-teal-500 rounded-xl w-[80%] md:w-[400px]">
       <Card borderRadius="1rem">
         <CardHeader className="rounded-t-xl bg-slate-950 ">
-          <h1 className="text-3xl font-bold text-slate-300">{title}</h1>
+          <h1 className="text-3xl font-bold text-slate-300">
+            {dict.auth.code.title}
+          </h1>
         </CardHeader>
         <Divider color={'teal.500'} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardBody className="space-y-4 grid justify-items-start md:w-[400px] bg-slate-950">
-            <Text className="text-slate-300">{labelTextEmail}</Text>
-            <InputCUI
-              id="email"
-              name="email"
-              type="email"
-              control={control}
-              placeholder={placeholderTextEmail}
-              focusBorderColor="teal.500"
-              className="text-slate-300"
-            />
-            {placeholderTextCode && (
-              <>
-                <Text className="text-slate-300">{labelTextCode}</Text>
-                <PinInputCUI
-                  name="code"
-                  control={control}
-                  digits={6}
-                  focusBorderColor="teal.500"
-                />
-              </>
-            )}
-            <div className="justify-self-center">
-              <RippleButton className="text-teal-500 text-lg font-bold">
-                {buttonTextCode ? buttonTextCode : buttonTextLogin}
-              </RippleButton>
-            </div>
+            <FormControl isInvalid={!!errors.email}>
+              <FormHelperText color={'white'} className="pb-2">
+                {dict.auth.code.email_label}
+              </FormHelperText>
+              <InputCUI
+                id="email"
+                name="email"
+                type="email"
+                control={control}
+                placeholder={dict.auth.code.email_placeholder}
+                focusBorderColor="teal.500"
+                className={`text-slate-300 ${errors.email ? 'mb-0' : 'mb-6'}`}
+              />
+              <div className="flex flex-col items-center justify-self-center">
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                  loadingText={dict.auth.code.button_label_loading}
+                  colorScheme="teal"
+                  className="text-lg font-bold w-32 md:w-36"
+                >
+                  {dict.auth.code.button_label_code}
+                </Button>
+              </div>
+              <span
+                className={`text-red-500 h-6 mt-1 ${isLoading ? 'visible' : ''}`}
+              >
+                {error}
+              </span>
+            </FormControl>
           </CardBody>
         </form>
         <CardFooter className="bg-slate-950 rounded-b-xl"></CardFooter>

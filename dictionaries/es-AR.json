@@ -9,11 +9,29 @@
       "title": "Iniciar sesión",
       "email_label": "Email",
       "email_placeholder": "Ingrese su correo electrónico",
-      "code_label": "Código",
       "code_placeholder": "Ingrese el código",
       "button_label_code": "Enviar código",
-      "button_label_login": "Iniciar sesión"
+      "button_label_loading": "Enviando...",
+      "code_send_error": "Error al enviar el código, intentelo de nuevo",
+      "email_subject": "The Big Code Theory - Código de acceso",
+      "email_title": "Hola !!!",
+      "email_body": "Este es tu código de acceso: "
     },
-    "login": {}
+    "login": {
+      "title": "Iniciar sesión",
+      "email_label": "Email",
+      "email_placeholder": "Ingrese su correo electrónico",
+      "email_error_required": "El correo electrónico es obligatorio",
+      "email_error_valid": "El correo electrónico no es valido",
+
+      "code_label": "Código",
+      "code_error_required": "El código es obligatorio",
+      "code_error_valid": "El código debe ser de 6 digitos",
+      "button_label_login": "Iniciar sesión",
+      "button_label_resend": "Reenviar código",
+      "signin_error": "El email o el código son incorrectos",
+      "button_label_loading": "Cargando...",
+      "button_label_resend_loading": "Reenviando..."
+    }
   }
 }

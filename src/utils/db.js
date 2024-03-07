@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const connect = async () => {
+export const connectDB = async () => {
   if (mongoose.connection.readyState == 1) {
     console.log('Already connected')
     return
@@ -12,5 +12,3 @@ const connect = async () => {
     throw new Error('Error conection to MongoDB', err)
   }
 }
-
-export default connect

@@ -3,7 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { connectDB } from '@/utils/db'
 import { findByEmailAndCode } from '@/controllers/Auth'
 
-export const authOptions: NextAuthOptions = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -21,20 +21,13 @@ export const authOptions: NextAuthOptions = {
           credentials!.email,
           credentials!.code,
         )
-        console.log('authFound', authFound)
         if (!authFound) return null
-
         return authFound
       },
     }),
   ],
-  session: {
-    strategy: 'jwt',
-  },
+
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true
-    },
     async jwt({ token, user }) {
       if (user) token.user = user
       return token
@@ -44,8 +37,6 @@ export const authOptions: NextAuthOptions = {
       return session
     },
   },
-}
-
-export const handler = NextAuth(authOptions)
+})
 
 export { handler as GET, handler as POST }

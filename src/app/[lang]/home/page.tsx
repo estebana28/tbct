@@ -8,15 +8,15 @@ interface PageProps {
 }
 export default async function HomePage({ params: { lang } }: PageProps) {
   const cookies = getCookies()
-  const isLogedin = cookies.get('auth_token')
+  const isLogedin = cookies.get('next-auth.session-token')
 
   if (!isLogedin) {
     redirect(`/${lang}/auth/code`)
   }
 
   return (
-    <div>
-      <h1>Hello Page</h1>
+    <div className="flex justify-center items-center h-screen">
+      <h1 className="text-3xl text-white font-bold">Hello Page</h1>
     </div>
   )
 }

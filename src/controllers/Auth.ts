@@ -11,13 +11,13 @@ export const getOrCreateAuthCode = async (email: string) => {
   if (!auth) return Auth.create({ email, code, createdAt: new Date() })
   auth.createdAt &&
     isCodeExpired(auth.createdAt) &&
-    Auth.findOneAndUpdate(
+    (await Auth.findOneAndUpdate(
       { email },
       {
         code,
         updatedAt: new Date(),
       },
-    )
+    ))
   return auth
 }
 

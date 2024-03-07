@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { auth } from '@/utils/api-hooks/(auth)/auth'
+import { auth, sendEmailCode } from '@/utils/api-hooks/(auth)/auth'
 import InputCUI from '@/ui/inputs/input'
 import {
   Card,
@@ -49,12 +49,15 @@ export default function AuthCard({ dict, lang }: CardProps) {
   })
 
   const onSubmit = async (values: any) => {
+    setError('')
     setIsLoading(!isLoading)
     try {
-      await auth(values.email)
+      const authData = await auth(values.email)
+      await sendEmailCode(values.email, lang, authData.code)
       router.push(
         `/${lang}/auth/login?email=${encodeURIComponent(values.email)}`,
       )
+
       setIsLoading(false)
     } catch (error) {
       setError(dict.auth.code.code_send_error)

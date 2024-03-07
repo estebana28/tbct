@@ -20,7 +20,6 @@ export const fetchApi = async (input: any, options: any = {}) => {
     const json = await res.json()
     return json
   } else if (res.status === 401) {
-    console.log('not authorized')
     clearSavedAuthToken()
     throw res
   } else {

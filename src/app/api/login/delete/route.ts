@@ -8,7 +8,6 @@ export const DELETE = async (request: Request) => {
 
   try {
     const res = await deleteByEmail(email)
-    console.log(res)
     if (res) {
       return NextResponse.json({ message: 'Success' }, { status: 200 })
     } else {

@@ -10,8 +10,8 @@ export const POST = async (request: Request) => {
   try {
     if (!code) {
       try {
-        await getOrCreateAuthCode(email)
-        return NextResponse.json({ message: 'Code sended.' }, { status: 200 })
+        const authData = await getOrCreateAuthCode(email)
+        return NextResponse.json({ authData }, { status: 200 })
       } catch (error: any) {
         return NextResponse.json(
           {

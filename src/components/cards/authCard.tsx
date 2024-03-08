@@ -52,8 +52,8 @@ export default function AuthCard({ dict, lang }: CardProps) {
     setError('')
     setIsLoading(!isLoading)
     try {
-      const authData = await auth(values.email)
-      await sendEmailCode(values.email, lang, authData.code)
+      const authResponse = await auth(values.email)
+      await sendEmailCode(values.email, lang, authResponse.authData)
       router.push(
         `/${lang}/auth/login?email=${encodeURIComponent(values.email)}`,
       )

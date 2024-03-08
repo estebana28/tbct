@@ -9,16 +9,16 @@ export const getOrCreateAuthCode = async (email: string) => {
   const code = generateSixDigitCode()
   const auth = await Auth.findOne({ email })
   if (!auth) return Auth.create({ email, code, createdAt: new Date() })
-  auth.createdAt &&
-    isCodeExpired(auth.createdAt) &&
-    (await Auth.findOneAndUpdate(
+  if (auth.createdAt && isCodeExpired(auth.createdAt)) {
+    await Auth.findOneAndUpdate(
       { email },
       {
         code,
         updatedAt: new Date(),
       },
-    ))
-  return auth
+    )
+    return code
+  }
 }
 
 export const findByEmailAndCode = async (email: string, code: string) => {
@@ -28,7 +28,7 @@ export const findByEmailAndCode = async (email: string, code: string) => {
       $and: [{ email: emailCleaned }, { code: code }],
     })
   } catch (error) {
-    console.log(error)
+    return error
   }
 }
 

@@ -1,6 +1,7 @@
 import { getSavedAuthToken, clearSavedAuthToken } from './api-hooks/(auth)/auth'
 
-export const baseUrl = 'http://localhost:3000/api'
+export const baseUrl =
+  process.env.NEXT_URL || 'https://thebigcodetheory.vercel.app/api'
 
 export const fetchApi = async (input: any, options: any = {}) => {
   const headers = options.headers || {}

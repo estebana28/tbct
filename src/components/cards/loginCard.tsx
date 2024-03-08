@@ -68,14 +68,11 @@ export default function LoginCard({ dict, lang }: CardProps) {
     setError('')
     setIsLoading(true)
     try {
-      const data = await signIn('credentials', {
+      await signIn('credentials', {
         email: values.email,
         code: values.code,
         callbackUrl: `/${lang}/home`,
       })
-      if (!data!.ok) {
-        setError(dict.auth.login.signin_error)
-      }
       setIsLoading(false)
     } catch (error) {
       setError(dict.auth.login.signin_error)

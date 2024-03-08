@@ -8,9 +8,9 @@ interface PageProps {
 }
 export default async function HomePage({ params: { lang } }: PageProps) {
   const cookies = getCookies()
-  const isLogedin = cookies.get(
-    'next-auth.session-token' || '__Secure-next-auth.session-token',
-  )
+  const isLogedin =
+    cookies.get('next-auth.session-token') ||
+    cookies.get('__Secure-next-auth.session-token')
 
   if (!isLogedin) {
     redirect(`/${lang}/auth/code`)

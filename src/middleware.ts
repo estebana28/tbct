@@ -29,9 +29,9 @@ export async function middleware(request: NextRequest) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-  const logedIn = await request.cookies.get(
-    'next-auth.session-token' || '__Secure-next-auth.session-token',
-  )
+  const logedIn =
+    (await request.cookies.get('next-auth.session-token')) ||
+    (await request.cookies.get('__Secure-next-auth.session-token'))
 
   if (logedIn && pathnameHasLocale) {
     return

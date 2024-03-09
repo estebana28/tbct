@@ -2,7 +2,14 @@
   "home": {
     "title": "The Big Code Theory",
     "description": "Este es un proyecto de código abierto que tiene como objetivo proporcionar una evaluación exhaustiva, enfocándose en las teorías, fundamentos y elementos fundamentales de diversos lenguajes de programación, librerías, frameworks y más...",
-    "button_label": "Comenzar"
+    "button_label": "Comenzar",
+    "navbar": {
+      "title": "TheBigCodeTheory",
+      "title_mobile": "TBCT",
+      "menu_profile": "Mi perfil",
+      "menu_settings": "Configuraciones",
+      "menu_logout": "Cerrar sesión"
+    }
   },
   "auth": {
     "code": {

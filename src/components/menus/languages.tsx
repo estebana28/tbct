@@ -11,7 +11,7 @@ interface Dictionary {
   countryCode: string
   title: string
 }
-export function LanguageMenu() {
+export function LanguageMenu({ className }: { className?: string }) {
   const [dictionary, setDictionary] = useState<Dictionary>({
     dictionary: 'es-AR',
     countryCode: 'ar',
@@ -57,15 +57,8 @@ export function LanguageMenu() {
 
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<ChevronDownIcon />}
-        colorScheme="teal"
-        variant="ghost"
-        size="sm"
-        py={0}
-      >
-        <div className="my-1">{selectedLanguage}</div>
+      <MenuButton py={0} className="shadow-lg shadow-teal-500 rounded-full">
+        <div>{selectedLanguage}</div>
       </MenuButton>
 
       <MenuList

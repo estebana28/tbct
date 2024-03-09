@@ -26,7 +26,9 @@ export default function RootLayout({
       <head>
         <link href="/public/output.css" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} bg-slate-900 h-screen`}>
+      <body
+        className={`${inter.className} bg-slate-900 h-screen min-h-screen max-h-screen`}
+      >
         <ChakraProvider>
           <NextAuthSessionProvider>
             <CookiesProvider>{children}</CookiesProvider>

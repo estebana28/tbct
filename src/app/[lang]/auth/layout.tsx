@@ -1,4 +1,4 @@
-import { LanguageMenu } from '@/components/menu/languages'
+import { LanguageMenu } from '@/components/menus/languages'
 
 export default function AuthLayout({
   children,

@@ -49,7 +49,7 @@ export function LanguageMenu({ className }: { className?: string }) {
         <CircleFlag
           countryCode={dictionary?.countryCode}
           title={dictionary?.title}
-          className="w-[20px] md:w-[30px] h-[20px] md:h-[30px]"
+          className="w-[25px] md:w-[30px] h-[25px] md:h-[30px]"
         />
       )
     }
@@ -61,13 +61,7 @@ export function LanguageMenu({ className }: { className?: string }) {
         <div>{selectedLanguage}</div>
       </MenuButton>
 
-      <MenuList
-        minW="30px"
-        maxW="30px"
-        bg="transparent"
-        border="none"
-        className="ml-3"
-      >
+      <MenuList minW="30px" maxW="30px" bg="transparent" border="none">
         {langs.map((lang, index) => (
           <MenuItem bg={'transparent'} p={0} my={2} key={index}>
             <CircleFlag

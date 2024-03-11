@@ -19,7 +19,7 @@ export default async function HomePage({ params: { lang } }: PageProps) {
   return (
     <div className="flex justify-center items-center h-full bg-slate-300">
       <h1 className="text-3xl text-slate-700 font-bold text-center">
-        Hola persona que programa...
+        Hola persona que programa... Esta web app esta en construccion
       </h1>
     </div>
   )

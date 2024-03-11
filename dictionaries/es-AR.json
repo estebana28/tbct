@@ -9,6 +9,12 @@
       "menu_profile": "Mi perfil",
       "menu_settings": "Configuraciones",
       "menu_logout": "Cerrar sesión"
+    },
+    "footer": {
+      "copyright": "Copyright © 2024 The Big Code Theory.",
+      "discord_tooltip": "Únete a nuestro Discord",
+      "cafecito_tooltip": "Invitame un café en cafecito.app",
+      "github_tooltip": "Nuestro repositorio en GitHub"
     }
   },
   "auth": {

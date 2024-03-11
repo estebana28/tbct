@@ -1,3 +1,4 @@
+import Footer from '@/components/dashboard/footer'
 import Navbar from '@/components/dashboard/navbar'
 import { getDictionary } from '@/dictionaries'
 
@@ -16,7 +17,8 @@ export default async function HomeLayout({
   return (
     <div className="w-full h-full">
       <Navbar dict={dict} />
-      {children}
+      <div className="py-16 h-full">{children}</div>
+      <Footer dict={dict} />
     </div>
   )
 }

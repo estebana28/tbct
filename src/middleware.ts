@@ -7,6 +7,13 @@ interface Locale {
   value: string
 }
 let locales = ['es-AR']
+
+const adminCheck = async (request: NextRequest) => {
+  const sessionCookie =
+    (await request.cookies.get('next-auth.session-token')) ||
+    (await request.cookies.get('__Secure-next-auth.session-token'))
+  console.log('session COOKIE', sessionCookie)
+}
 async function getLocale(request: NextRequest) {
   let defaultLocale
   const cookieStore = cookies()
@@ -29,6 +36,8 @@ export async function middleware(request: NextRequest) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
+  const isAdmin = await adminCheck(request)
+
   const logedIn =
     (await request.cookies.get('next-auth.session-token')) ||
     (await request.cookies.get('__Secure-next-auth.session-token'))

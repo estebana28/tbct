@@ -4,7 +4,7 @@ export default function Questions({ questionsData }: any) {
   const headers = ['idTag', 'question', 'levels', 'choices', 'answer', 'status']
   return (
     <div>
-      <AdminTable headers={headers} data={questionsData} />
+      <AdminTable headers={headers} data={questionsData.questions} />
     </div>
   )
 }

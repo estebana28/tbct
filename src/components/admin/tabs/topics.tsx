@@ -9,7 +9,7 @@ export default function Topics({ topicsData }: any) {
       <div className="flex justify-end">
         <AddNewItem panel={'topics'} fields={headers} />
       </div>
-      <AdminTable headers={headers} data={topicsData} />
+      <AdminTable headers={headers} data={topicsData.topics} />
     </div>
   )
 }

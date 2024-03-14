@@ -16,6 +16,8 @@ interface AdminTableProps {
 }
 
 export default function AdminTable({ headers, data }: AdminTableProps) {
+  console.log('data', data)
+
   return (
     <div>
       <TableContainer>
@@ -28,7 +30,7 @@ export default function AdminTable({ headers, data }: AdminTableProps) {
             </Tr>
           </Thead>
           <Tbody>
-            {data.length ? (
+            {data && data.length ? (
               data.map((row: any) => {
                 return (
                   <Tr key={row._id}>

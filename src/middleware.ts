@@ -17,8 +17,8 @@ interface Session {
   user: User | null
 }
 
-const adminCheck = async (request: NextRequest) => {
-  const session: Session | null = await getToken({ req: request })
+const adminCheck = async (req: NextRequest) => {
+  const session: Session | null = await getToken({ req })
   if (session) {
     return session.user?.role === 'admin'
   }

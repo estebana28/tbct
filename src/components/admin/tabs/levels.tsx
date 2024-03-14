@@ -4,7 +4,7 @@ export default function Levels({ levelsData }: any) {
   const headers = ['Name', 'Color', 'Number', 'Status']
   return (
     <div>
-      <AdminTable headers={headers} data={levelsData} />
+      <AdminTable headers={headers} data={levelsData.levels} />
     </div>
   )
 }

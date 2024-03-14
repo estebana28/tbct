@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { auth, sendEmailCode } from '@/utils/api-hooks/(auth)/auth'
+import { auth, sendEmailCode } from '@/utils/api-hooks/auth'
 import InputCUI from '@/ui/inputs/input'
 import {
   Card,

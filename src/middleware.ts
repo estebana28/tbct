@@ -1,18 +1,27 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
-
+import { getToken } from 'next-auth/jwt'
+import { withAuth } from 'next-auth/middleware'
 interface Locale {
   name: string
   value: string
 }
 let locales = ['es-AR']
 
+interface User {
+  role: string
+}
+
+interface Session {
+  user: User | null
+}
+
 const adminCheck = async (request: NextRequest) => {
-  const sessionCookie =
-    (await request.cookies.get('next-auth.session-token')) ||
-    (await request.cookies.get('__Secure-next-auth.session-token'))
-  console.log('session COOKIE', sessionCookie)
+  const session: Session | null = await getToken({ req: request })
+  if (session) {
+    return session.user?.role === 'admin'
+  }
 }
 async function getLocale(request: NextRequest) {
   let defaultLocale
@@ -36,8 +45,14 @@ export async function middleware(request: NextRequest) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-  const isAdmin = await adminCheck(request)
 
+  // Checks if user is admin and block access to admin routes
+  const isAdmin = await adminCheck(request)
+  if (pathname.startsWith('/admin') && isAdmin) {
+    return
+  }
+
+  // Checks if user is logged in
   const logedIn =
     (await request.cookies.get('next-auth.session-token')) ||
     (await request.cookies.get('__Secure-next-auth.session-token'))

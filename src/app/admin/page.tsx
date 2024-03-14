@@ -1,7 +1,14 @@
-export default function AdminPage() {
+import AdminNavbar from '@/components/admin/navbar'
+import TabsPanel from '@/components/admin/tabsPanel'
+import { getTopicsData } from '@/utils/api-hooks/topic'
+
+export default async function AdminPage() {
   return (
-    <div className="flex justify-center items-start pt-32 md:items-center md:pt-0 h-full bg-slate-900">
-      <h1>Admin</h1>
+    <div className="h-full bg-slate-300">
+      <AdminNavbar />
+      <div className="pt-28">
+        <TabsPanel />
+      </div>
     </div>
   )
 }

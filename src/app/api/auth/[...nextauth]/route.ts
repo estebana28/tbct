@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from 'next-auth'
+import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { connectDB } from '@/utils/db'
 import { findByEmailAndCode } from '@/controllers/Auth'
@@ -26,6 +26,12 @@ const handler = NextAuth({
       },
     }),
   ],
+  session: {
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/auth/code',
+  },
 
   callbacks: {
     async jwt({ token, user }) {

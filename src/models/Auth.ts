@@ -25,6 +25,11 @@ const authSchema = new Schema(
       type: Schema.Types.Boolean,
       default: true,
     },
+    role: {
+      type: Schema.Types.String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
   },
   { collection: 'auth' },
 )

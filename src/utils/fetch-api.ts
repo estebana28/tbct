@@ -1,7 +1,8 @@
-import { getSavedAuthToken, clearSavedAuthToken } from './api-hooks/(auth)/auth'
+import { NextRequest } from 'next/server'
+import { getSavedAuthToken, clearSavedAuthToken } from './api-hooks/auth'
 
-export const baseUrl =
-  process.env.NEXT_URL || 'https://thebigcodetheory.vercel.app/api'
+//export const baseUrl = 'http://localhost:3000/api'
+export const baseUrl = 'https://thebigcodetheory.vercel.app/api'
 
 export const fetchApi = async (input: any, options: any = {}) => {
   const headers = options.headers || {}

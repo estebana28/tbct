@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -19,7 +20,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@chakra-ui/react'
-import { auth } from '@/utils/api-hooks/(auth)/auth'
+import { auth } from '@/utils/api-hooks/auth'
 
 interface CardProps {
   lang: string

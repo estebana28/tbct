@@ -2,7 +2,15 @@ import AdminTable from '@/ui/tables/adminTable'
 import AddNewItem from '../addNewItem'
 
 export default function Topics({ topicsData }: any) {
-  const headers = ['idTag', 'name', 'description', 'questionsQty', 'status']
+  const headers = [
+    'label',
+    'value',
+    'description',
+    'color',
+    'icon',
+    'questionsQty',
+    'status',
+  ]
 
   return (
     <div>

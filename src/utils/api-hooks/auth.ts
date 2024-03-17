@@ -18,10 +18,11 @@ export async function clearSavedAuthToken() {
   cookies().delete(TOKEN_ITEM_NAME)
 }
 
-export const auth = (email: string) => {
+export const auth = (email: string, lang: string) => {
   return postApi('/login', {
     body: {
       email,
+      lang,
     },
   })
 }

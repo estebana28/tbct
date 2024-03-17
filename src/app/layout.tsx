@@ -6,6 +6,7 @@ import { ChakraProvider } from '@/components/config/ChakraProvider'
 
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
+import { SWRProvider } from '@/components/config/SwrProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,10 +29,13 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.className} bg-slate-900 h-screen min-h-screen max-h-screen`}
+        suppressHydrationWarning={true}
       >
         <ChakraProvider>
           <NextAuthSessionProvider>
-            <CookiesProvider>{children}</CookiesProvider>
+            <SWRProvider>
+              <CookiesProvider>{children}</CookiesProvider>
+            </SWRProvider>
           </NextAuthSessionProvider>
         </ChakraProvider>
       </body>

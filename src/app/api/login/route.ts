@@ -3,15 +3,18 @@ import { NextResponse } from 'next/server'
 import { getOrCreateAuthCode, findByEmailAndCode } from '@/controllers/Auth'
 
 export const POST = async (request: Request) => {
-  const { email, code } = await request.json()
+  const { email, code, lang } = await request.json()
 
   await connectDB()
 
   try {
     if (!code) {
       try {
-        const authData = await getOrCreateAuthCode(email)
-        return NextResponse.json({ authData }, { status: 200 })
+        await getOrCreateAuthCode(email, lang)
+        return NextResponse.json(
+          { message: 'Code sended correctly' },
+          { status: 200 },
+        )
       } catch (error: any) {
         return NextResponse.json(
           {

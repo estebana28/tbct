@@ -15,6 +15,14 @@
       "discord_tooltip": "Únete a nuestro Discord",
       "cafecito_tooltip": "Invitame un café en cafecito.app",
       "github_tooltip": "Nuestro repositorio en GitHub"
+    },
+    "side_drawer": {
+      "button_tooltip": "Abrir menu",
+      "header_title": "Preferencias",
+      "input_topic_label": "Abrir menu",
+      "topics": "Temas",
+      "button_label_cancel": "Cancelar",
+      "button_label_save": "Guardar"
     }
   },
   "auth": {

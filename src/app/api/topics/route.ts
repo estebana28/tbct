@@ -24,11 +24,11 @@ export const GET = async () => {
 }
 
 export const POST = async (request: Request) => {
-  const { name, idTag, description } = await request.json()
+  const { label, value, description, color, icon } = await request.json()
   await connectDB()
 
   try {
-    await createTopic({ name, idTag, description })
+    await createTopic({ label, value, description, color, icon })
     return NextResponse.json({ message: 'Success' }, { status: 200 })
   } catch (error: any) {
     return NextResponse.json(

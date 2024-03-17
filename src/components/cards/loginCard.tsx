@@ -35,9 +35,7 @@ type AuthFormInputs = {
 export default function LoginCard({ dict, lang }: CardProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isLoadingResend, setIsLoadingResend] = useState<boolean>(false)
-
   const [error, setError] = useState<string>('')
-  const { data: session, status } = useSession()
   const searchParams = useSearchParams()
 
   const schema = yup.object().shape({
@@ -85,7 +83,7 @@ export default function LoginCard({ dict, lang }: CardProps) {
   const resendCode = async () => {
     setIsLoadingResend(true)
     const email = getValues('email')
-    await auth(email)
+    await auth(email, lang)
     setIsLoadingResend(false)
   }
 

@@ -24,7 +24,7 @@ export function LanguageMenu({ className }: { className?: string }) {
       {
         dictionary: 'es-AR',
         countryCode: 'ar',
-        title: 'Argentina',
+        title: 'Español Argentina',
       },
     ],
     [],

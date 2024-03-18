@@ -4,6 +4,7 @@ import React from 'react'
 import NavBarMenu from '../menus/navBarMenu'
 import { LanguageMenu } from '../menus/languages'
 import Notifications from '../menus/notifications'
+
 export default function Navbar({ dict }: { dict: any }) {
   return (
     <div className="h-16 border-b-2 border-slate-700 bg-slate-900 fixed w-full">

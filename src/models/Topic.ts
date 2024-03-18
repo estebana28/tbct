@@ -2,17 +2,33 @@ import mongoose, { Schema } from 'mongoose'
 
 const TopicSchema = new Schema(
   {
-    name: {
+    label: {
       type: Schema.Types.String,
       required: [true, 'Name is required'],
+    },
+    value: {
+      type: Schema.Types.String,
+      required: [true, 'Value is required'],
     },
     description: {
       type: Schema.Types.String,
       required: [true, 'Description is required'],
     },
-    idTag: {
+    color: {
       type: Schema.Types.String,
-      required: [true, 'Tag is required'],
+      required: [true, 'Color is required'],
+    },
+    icon: {
+      type: Schema.Types.String,
+      required: [true, 'Icon is required'],
+    },
+    questionsQty: {
+      type: Schema.Types.Number,
+      default: 0,
+    },
+    status: {
+      type: Schema.Types.Boolean,
+      default: true,
     },
     createdAt: {
       type: Schema.Types.Date,
@@ -21,14 +37,6 @@ const TopicSchema = new Schema(
     updatedAt: {
       type: Schema.Types.Date,
       default: Date.now,
-    },
-    status: {
-      type: Schema.Types.Boolean,
-      default: true,
-    },
-    questionsQty: {
-      type: Schema.Types.Number,
-      default: 0,
     },
   },
   {

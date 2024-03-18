@@ -4,11 +4,46 @@ import {
   isCodeExpired,
 } from '@/utils/auxiliary'
 import Auth from '@/models/Auth'
+import { createProfile } from './Profile'
+import { sendEmailCode } from '@/utils/api-hooks/auth'
+import Profile from '@/models/Profile'
+import { sendEmail } from '@/utils/email'
+import { render } from '@react-email/render'
 
-export const getOrCreateAuthCode = async (email: string) => {
+import CodeEmail from '@/components/emails/codeEmail'
+import { getDictionary } from '@/dictionaries'
+
+export const getOrCreateAuthCode = async (email: string, lang: string) => {
+  const dict = await getDictionary(lang)
+
   const code = generateSixDigitCode()
   const auth = await Auth.findOne({ email })
-  if (!auth) return Auth.create({ email, code, createdAt: new Date() })
+  if (!auth) {
+    const authCreated = await Auth.create({
+      email,
+      code,
+      createdAt: new Date(),
+    })
+
+    await sendEmail({
+      to: email,
+      subject: dict.auth.code.email_subject,
+      html: render(
+        await CodeEmail({
+          title: dict.auth.code.email_title,
+          body: dict.auth.code.email_body,
+          code,
+        }),
+      ),
+    })
+
+    await Profile.create({
+      authId: authCreated._id,
+      email,
+      createdAt: new Date(),
+    })
+  }
+
   if (auth.createdAt && isCodeExpired(auth.createdAt)) {
     await Auth.findOneAndUpdate(
       { email },
@@ -17,7 +52,6 @@ export const getOrCreateAuthCode = async (email: string) => {
         updatedAt: new Date(),
       },
     )
-    return code
   }
 }
 

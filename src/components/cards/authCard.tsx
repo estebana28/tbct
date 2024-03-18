@@ -17,6 +17,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@chakra-ui/react'
+import FormButtonCUI from '@/ui/buttons/formButton'
 
 interface CardProps {
   dict: any
@@ -52,8 +53,7 @@ export default function AuthCard({ dict, lang }: CardProps) {
     setError('')
     setIsLoading(!isLoading)
     try {
-      const authResponse = await auth(values.email)
-      await sendEmailCode(values.email, lang, authResponse.authData)
+      await auth(values.email, lang)
       router.push(
         `/${lang}/auth/login?email=${encodeURIComponent(values.email)}`,
       )
@@ -91,16 +91,15 @@ export default function AuthCard({ dict, lang }: CardProps) {
                 className={`text-slate-300 ${errors.email ? 'mb-0' : 'mb-6'}`}
               />
               <div className="flex flex-col items-center justify-self-center">
-                <Button
+                <FormButtonCUI
                   type="submit"
                   isLoading={isLoading}
                   disabled={isLoading}
                   loadingText={dict.auth.code.button_label_loading}
                   colorScheme="teal"
-                  className="text-lg font-bold w-32 md:w-36"
                 >
                   {dict.auth.code.button_label_code}
-                </Button>
+                </FormButtonCUI>
               </div>
               <span
                 className={`text-red-500 h-6 mt-1 ${isLoading ? 'visible' : ''}`}

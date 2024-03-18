@@ -16,8 +16,6 @@ interface AdminTableProps {
 }
 
 export default function AdminTable({ headers, data }: AdminTableProps) {
-  console.log('data', data)
-
   return (
     <div>
       <TableContainer>
